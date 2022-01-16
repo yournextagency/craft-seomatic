@@ -47,7 +47,7 @@ use markhuot\CraftQL\Builders\Schema;
 use markhuot\CraftQL\CraftQL;
 use markhuot\CraftQL\Events\AlterSchemaFields;
 use nystudio107\fastcgicachebust\FastcgiCacheBust;
-use nystudio107\pluginmanifest\services\ManifestService;
+use nystudio107\pluginvite\services\VitePluginService;
 use nystudio107\seomatic\assetbundles\seomatic\SeomaticAsset;
 use nystudio107\seomatic\fields\Seomatic_Meta as Seomatic_MetaField;
 use nystudio107\seomatic\fields\SeoSettings as SeoSettingsField;
@@ -99,7 +99,7 @@ use yii\base\Event;
  * @property SitemapsService $sitemaps
  * @property TagService $tag
  * @property TitleService $title
- * @property ManifestService $manifest
+ * @property VitePluginService $vite
  */
 class Seomatic extends Plugin
 {
@@ -255,12 +255,16 @@ class Seomatic extends Plugin
             'sitemaps' => SitemapsService::class,
             'tag' => TagService::class,
             'title' => TitleService::class,
-            // Register the manifest service
-            'manifest' => [
-                'class' => ManifestService::class,
+            // Register the vite service
+            'vite' => [
+                'class' => VitePluginService::class,
                 'assetClass' => SeomaticAsset::class,
-                'devServerManifestPath' => 'http://craft-seomatic-buildchain:8080/',
-                'devServerPublicPath' => 'http://craft-seomatic-buildchain:8080/',
+                'useDevServer' => true,
+                'devServerPublic' => 'http://localhost:3001',
+                'serverPublic' => 'http://localhost:8000',
+                'errorEntry' => 'src/js/seomatic.js',
+                'devServerInternal' => 'http://craft-seomatic-buildchain:3001',
+                'checkDevServer' => true,
             ],
         ];
 

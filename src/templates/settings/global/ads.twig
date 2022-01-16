@@ -6,6 +6,16 @@
 
 {% import "_includes/forms" as forms %}
 
+{% block head %}
+    {{ parent() }}
+    {% set tagOptions = {
+        'depends': [
+            'nystudio107\\seomatic\\assetbundles\\seomatic\\SeomaticAsset'
+        ],
+    } %}
+    {{ seomatic.vite.register('src/js/javascript-editor.js', false, tagOptions, tagOptions) }}
+{% endblock %}
+
 {% block header %}
     {{ block('pageTitle') }}
     {{ block('contextMenu') }}
@@ -13,13 +23,6 @@
     <div class="flex-grow"></div>
     {{ block('copyFromMenu') }}
     {{ block('actionButton') }}
-{% endblock %}
-
-{% block foot %}
-    {{ parent() }}
-    {{ seomatic.manifest.registerJsModules([
-        'javascript-editor.js',
-    ]) }}
 {% endblock %}
 
 {% block contextMenu %}
