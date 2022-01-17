@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import ConfettiParty from '@/vue/ConfettiParty.vue';
 import DashboardMultiRadialChart from '@/vue/DashboardMultiRadialChart.vue';
 import DashboardRadialChart from '@/vue/DashboardRadialChart.vue';
