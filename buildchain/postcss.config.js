@@ -1,8 +1,6 @@
-import nesting from 'tailwindcss/nesting';
-
 module.exports = {
   plugins: {
-    nesting,
+    'tailwindcss/nesting': {},
     tailwindcss: {},
     autoprefixer: {},
   },
