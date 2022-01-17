@@ -1,8 +1,8 @@
 import {createVuePlugin} from 'vite-plugin-vue2';
-import monacoEditorPlugin from 'vite-plugin-monaco-editor';
 import ViteRestart from 'vite-plugin-restart';
-import {viteExternalsPlugin} from 'vite-plugin-externals';
+import monacoEditorPlugin from 'vite-plugin-monaco-editor';
 import {useDynamicPublicPath} from 'vite-plugin-dynamic-publicpath';
+import {viteExternalsPlugin} from 'vite-plugin-externals';
 import viteCompression from 'vite-plugin-compression';
 import {visualizer} from 'rollup-plugin-visualizer';
 import eslintPlugin from 'vite-plugin-eslint';
@@ -42,12 +42,12 @@ export default ({command}) => ({
       ],
     }),
     createVuePlugin(),
+    viteExternalsPlugin({
+      'vue': 'Vue',
+    }),
     monacoEditorPlugin({
       //languages: ['css', 'html', 'javascript', 'json', 'twig', 'typescript'],
       globalAPI: true,
-    }),
-    viteExternalsPlugin({
-      'vue': 'Vue',
     }),
     useDynamicPublicPath(),
     viteCompression({
