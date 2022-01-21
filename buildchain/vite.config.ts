@@ -1,16 +1,18 @@
+import {defineConfig} from 'vite';
 import {createVuePlugin} from 'vite-plugin-vue2';
 import ViteRestart from 'vite-plugin-restart';
 import monacoEditorPlugin from 'vite-plugin-monaco-editor';
 import {useDynamicPublicPath} from 'vite-plugin-dynamic-publicpath';
 import {viteExternalsPlugin} from 'vite-plugin-externals';
+import manifestSRI from 'vite-plugin-manifest-sri';
 import viteCompression from 'vite-plugin-compression';
 import {visualizer} from 'rollup-plugin-visualizer';
 import eslintPlugin from 'vite-plugin-eslint';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
-import path from 'path';
+import * as path from 'path';
 
 // https://vitejs.dev/config/
-export default ({command}) => ({
+export default defineConfig(({command}) => ({
   base: command === 'serve' ? '' : '/dist/',
   build: {
     emptyOutDir: true,
@@ -53,6 +55,7 @@ export default ({command}) => ({
     viteCompression({
       filter: /\.(js|mjs|json|css|map)$/i
     }),
+    manifestSRI(),
     visualizer({
       filename: '../src/web/assets/dist/stats.html',
       template: 'treemap',
@@ -79,4 +82,4 @@ export default ({command}) => ({
     port: 3001,
     strictPort: true,
   }
-});
+}));
